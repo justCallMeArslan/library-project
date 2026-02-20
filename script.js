@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const addBookBtn = document.querySelector(".addBookBtn");
 
 const personalLibrary = [];
 
@@ -17,3 +18,10 @@ function addBookToLibrary() {
 
 addBookToLibrary();
 console.log(personalLibrary);
+
+
+
+addBookBtn.addEventListener('submit', function(e){
+    e.preventDefault();
+    
+})
