@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const { createElement } = require('react');
 const addBookBtn = document.querySelector(".addBookBtn");
 
 const personalLibrary = [];
@@ -23,5 +24,8 @@ console.log(personalLibrary);
 
 addBookBtn.addEventListener('submit', function(e){
     e.preventDefault();
-    
+})
+
+addBookBtn.addEventListener('click', function(){
+    addBookBtn,createElement("form");
 })
