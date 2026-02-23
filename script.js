@@ -1,6 +1,6 @@
 // const crypto = require('crypto');
 const addBookBtn = document.querySelector(".addBookBtn");
-const bodyProgTable = document.querySelector(".bodyMyCol")
+const bodyMyCol = document.querySelector(".bodyMyCol")
 
 const personalLibrary = [];
 
@@ -10,6 +10,8 @@ function Book(id, title, author, pages, notesReview, readCheckbox, removeButton)
     this.author = author;
     this.pages = pages;
     this.notesReview = notesReview;
+    this.readCheckbox = readCheckbox;
+    this.removeButton = removeButton;
 
 }
 
@@ -25,7 +27,7 @@ console.log(personalLibrary);
 
 function displayBooks() {
 
-    bodyProgTable.innerHTML = "";
+    bodyMyCol.innerHTML = "";
 
     personalLibrary.forEach(book => {
         const newRow = document.createElement("tr");
@@ -34,20 +36,33 @@ function displayBooks() {
         const newAuthor = document.createElement("td");
         const newNumOfPages = document.createElement("td");
         const newNotesReview = document.createElement("td");
-        newRow.append(newID, newTitle, newAuthor, newNumOfPages, newNotesReview);
-        bodyProgTable.appendChild(newRow);
+        const newReadUnread = document.createElement("td");
+        const readCheckbox = document.createElement("input");
+        readCheckbox.type = "checkbox";
+        const newRemoveButton = document.createElement("td");
+        const button = document.createElement("button");
+        newRemoveButton.textContent = "Remove book";
 
+        newReadUnread.appendChild(readCheckbox);
+        newRemoveButton.appendChild(button);
+        const arrayIndex = personalLibrary.findIndex(arrayBook => arrayBook.id === book.id);
+        if (arrayIndex > -1) {
+            personalLibrary.splice(arrayIndex, 1);
+        }
+        newRow.append(newID, newTitle, newAuthor, newNumOfPages, newNotesReview, newReadUnread);
+        bodyMyCol.appendChild(newRow);
         newID.textContent = book.id;
         newTitle.textContent = book.title;
         newAuthor.textContent = book.author;
         newNumOfPages.textContent = book.pages;
         newNotesReview.textContent = book.notesReview;
-
     });
 }
 
 
 
+
+// need to create toggle behavior for the add item button and prevent to form with submit button
 addBookBtn.addEventListener('submit', function (e) {
     e.preventDefault();
 })
