@@ -1,29 +1,31 @@
-// const crypto = require('crypto');
 const addBookBtn = document.querySelector(".addBookBtn");
-const bodyMyCol = document.querySelector(".bodyMyCol")
+const bodyMyCol = document.querySelector(".bodyMyCol");
+const form = document.querySelector(".form-container");
+const formTitle = document.querySelector("#formTitle");
+const formAuthor = document.querySelector("#formAuthor");
+const formNumOfPages = document.querySelector("#formNumOfPages");
+const formNotesReview = document.querySelector("#formNotesReview");
+const modal = document.querySelector(".formPopUp")
+const closeFormBtn = document.querySelector(".closeModal");
 
 const personalLibrary = [];
 
-function Book(id, title, author, pages, notesReview, readCheckbox, removeButton) {
+function Book(id, title, author, pages, notesReview, isRead = false) {
     this.id = id;
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.notesReview = notesReview;
-    this.readCheckbox = readCheckbox;
-    this.removeButton = removeButton;
-
+    this.isRead = isRead;
 }
 
 function addBookToLibrary() {
-    const book = new Book(crypto.randomUUID(), "The Hobbit", "J.R.R Tolkien", 295,
-        "Good book, main hero is funny");
+    const bookID = crypto.randomUUID().slice(0, 13);
+    const book = new Book(bookID, formTitle.value, formAuthor.value, parseInt(formNumOfPages.value),
+        formNotesReview.value);
     personalLibrary.push(book);
+    displayBooks();
 }
-
-addBookToLibrary();
-console.log(personalLibrary);
-
 
 function displayBooks() {
 
@@ -39,17 +41,42 @@ function displayBooks() {
         const newReadUnread = document.createElement("td");
         const readCheckbox = document.createElement("input");
         readCheckbox.type = "checkbox";
-        const newRemoveButton = document.createElement("td");
-        const button = document.createElement("button");
-        newRemoveButton.textContent = "Remove book";
+
+        if (book.isRead === true) {
+            readCheckbox.checked = true;
+            newRow.style.background = "green";
+        } else {
+            readCheckbox.checked = false;
+            newRow.style.backgroundColor = "white";
+        }
+
+        readCheckbox.addEventListener('change', function () {
+            if (readCheckbox.checked === true) {
+                book.isRead = true;
+                newRow.style.backgroundColor = "green";
+            } else {
+                book.isRead = false;
+                newRow.style.backgroundColor = "white";
+            }
+        })
+
 
         newReadUnread.appendChild(readCheckbox);
-        newRemoveButton.appendChild(button);
-        const arrayIndex = personalLibrary.findIndex(arrayBook => arrayBook.id === book.id);
-        if (arrayIndex > -1) {
-            personalLibrary.splice(arrayIndex, 1);
-        }
-        newRow.append(newID, newTitle, newAuthor, newNumOfPages, newNotesReview, newReadUnread);
+        const newRemoveButton = document.createElement("td");
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Remove book";
+        deleteButton.addEventListener('click', function () {
+            const arrayIndex = personalLibrary.findIndex(arrayBook => arrayBook.id === book.id);
+            if (arrayIndex > -1) {
+                personalLibrary.splice(arrayIndex, 1);
+            }
+            newRow.remove();
+        });
+
+        newRemoveButton.appendChild(deleteButton);
+
+        newRow.append(newID, newTitle, newAuthor, newNumOfPages, newNotesReview,
+            newReadUnread, newRemoveButton);
         bodyMyCol.appendChild(newRow);
         newID.textContent = book.id;
         newTitle.textContent = book.title;
@@ -60,9 +87,18 @@ function displayBooks() {
 }
 
 
-
-
-// need to create toggle behavior for the add item button and prevent to form with submit button
-addBookBtn.addEventListener('submit', function (e) {
-    e.preventDefault();
+addBookBtn.addEventListener('click', function () {
+    modal.showModal();
 })
+closeFormBtn.addEventListener('click', function () {
+    modal.close();
+})
+
+
+form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    addBookToLibrary();
+    form.reset();
+});
+
+
