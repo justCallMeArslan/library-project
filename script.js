@@ -51,7 +51,7 @@ function displayBooks() {
         readCheckbox.addEventListener('change', function () {
             if (readCheckbox.checked === true) {
                 book.isRead = true;
-                newRow.style.backgroundColor = "green";
+                newRow.style.backgroundColor = "#90EE90";
             } else {
                 book.isRead = false;
                 newRow.style.backgroundColor = "white";
@@ -60,7 +60,8 @@ function displayBooks() {
         newReadUnread.appendChild(readCheckbox);
         const newRemoveButton = document.createElement("td");
         const deleteButton = document.createElement("button");
-        deleteButton.textContent = "Remove book";
+        deleteButton.textContent = "Remove";
+        deleteButton.classList.add("deleteButton");
         deleteButton.addEventListener('click', function () {
             const arrayIndex = personalLibrary.findIndex(arrayBook => arrayBook.id === book.id);
             if (arrayIndex > -1) {

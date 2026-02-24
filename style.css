@@ -131,3 +131,9 @@ dialog::backdrop {
     gap: 10px;
 }
 
+.deleteButton {
+    border-radius: 15px;
+    background-color: #90EE90;
+    border: 1px solid black;
+}
+

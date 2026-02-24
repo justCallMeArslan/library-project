@@ -45,15 +45,15 @@
         <button class="addBookBtn">Add new book to the collection</button>
         <dialog class="formPopUp">
             <form class="form-container">
-                <h3>Fill up form with book information</h3>
+                <h3>What book is going to be next?</h3>
                 <label for="title">Title</label>
-                <input type="text" name="title" id="formTitle">
+                <input type="text" name="title" id="formTitle" required>
                 <label for="author">Author</label>
-                <input type="text" name="author" id="formAuthor">
+                <input type="text" name="author" id="formAuthor" required>
                 <label for="numOfPages">Number of pages</label>
-                <input type="tel" name="numOfPages" id="formNumOfPages">
+                <input type="number" name="numOfPages" id="formNumOfPages" required>
                 <label for="notesReview">Notes/Review</label>
-                <input type="text" name="notesReview" id="formNotesReview">
+                <input type="text" name="notesReview" id="formNotesReview" required>
                 <button type="submit">Submit</button>
                 <button type="button" class="closeModal">Close</button>
             </form>
