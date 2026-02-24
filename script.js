@@ -41,7 +41,6 @@ function displayBooks() {
         const newReadUnread = document.createElement("td");
         const readCheckbox = document.createElement("input");
         readCheckbox.type = "checkbox";
-
         if (book.isRead === true) {
             readCheckbox.checked = true;
             newRow.style.background = "green";
@@ -49,7 +48,6 @@ function displayBooks() {
             readCheckbox.checked = false;
             newRow.style.backgroundColor = "white";
         }
-
         readCheckbox.addEventListener('change', function () {
             if (readCheckbox.checked === true) {
                 book.isRead = true;
@@ -59,8 +57,6 @@ function displayBooks() {
                 newRow.style.backgroundColor = "white";
             }
         })
-
-
         newReadUnread.appendChild(readCheckbox);
         const newRemoveButton = document.createElement("td");
         const deleteButton = document.createElement("button");
