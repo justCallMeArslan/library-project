@@ -78,27 +78,31 @@ h6 {
     isolation: isolate;
 }
 
-table{
-	border: 1px solid #eee;
-	table-layout: fixed;
-	width: 100%;
+table {
+    border: 1px solid #eee;
+    table-layout: fixed;
+    width: 100%;
 }
+
 table th {
-	font-weight: bold;
-	padding: 5px;
-	background: #efefef;
-	border: 1px solid #dddddd;
+    font-weight: bold;
+    padding: 5px;
+    background: #efefef;
+    border: 1px solid #dddddd;
 }
-table td{
-	padding: 5px 10px;
-	border: 1px solid #eee;
-	text-align: left;
+
+table td {
+    padding: 5px 10px;
+    border: 1px solid #eee;
+    text-align: left;
 }
-table tbody tr:nth-child(odd){
-	background: #fff;
+
+table tbody tr:nth-child(odd) {
+    background: #fff;
 }
-table tbody tr:nth-child(even){
-	background: #F7F7F7;
+
+table tbody tr:nth-child(even) {
+    background: #F7F7F7;
 }
 
 .addBookBtn {
@@ -112,11 +116,16 @@ table tbody tr:nth-child(even){
 
 dialog {
     border: none;
-    padding: 20px;  
+    padding: 20px;
     border-radius: 12px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     max-width: 400px;
     text-align: center;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
 }
 
 .form-container {
