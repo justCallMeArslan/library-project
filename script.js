@@ -10,13 +10,19 @@ const closeFormBtn = document.querySelector(".closeModal");
 
 const personalLibrary = [];
 
-function Book(id, title, author, pages, notesReview, isRead = false) {
-    this.id = id;
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.notesReview = notesReview;
-    this.isRead = isRead;
+class Book {
+    constructor(id, title, author, pages, notesReview, isRead = false) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.notesReview = notesReview;
+        this.isRead = isRead;
+    }
+
+    toggleRead() {
+        this.isRead = !this.isRead;
+    }
 }
 
 function addBookToLibrary() {
@@ -41,22 +47,12 @@ function displayBooks() {
         const newReadUnread = document.createElement("td");
         const readCheckbox = document.createElement("input");
         readCheckbox.type = "checkbox";
-        if (book.isRead === true) {
-            readCheckbox.checked = true;
-            newRow.style.background = "green";
-        } else {
-            readCheckbox.checked = false;
-            newRow.style.backgroundColor = "white";
-        }
+        readCheckbox.checked = book.isRead; // returns true or false
+        newRow.style.backgroundColor = book.isRead ? "#90EE90" : "white";
         readCheckbox.addEventListener('change', function () {
-            if (readCheckbox.checked === true) {
-                book.isRead = true;
-                newRow.style.backgroundColor = "#90EE90";
-            } else {
-                book.isRead = false;
-                newRow.style.backgroundColor = "white";
-            }
-        })
+            book.toggleRead();
+            newRow.style.backgroundColor = book.isRead ? "#90EE90" : "white";
+        });
         newReadUnread.appendChild(readCheckbox);
         const newRemoveButton = document.createElement("td");
         const deleteButton = document.createElement("button");
