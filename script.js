@@ -34,9 +34,7 @@ function addBookToLibrary() {
 }
 
 function displayBooks() {
-
     bodyMyCol.innerHTML = "";
-
     personalLibrary.forEach(book => {
         const newRow = document.createElement("tr");
         const newID = document.createElement("td");
@@ -86,8 +84,6 @@ addBookBtn.addEventListener('click', function () {
 closeFormBtn.addEventListener('click', function () {
     modal.close();
 })
-
-
 form.addEventListener('submit', function (event) {
     event.preventDefault();
     addBookToLibrary();
