@@ -81,12 +81,11 @@ function displayBooks() {
 addBookBtn.addEventListener('click', function () {
     modal.showModal();
 })
-closeFormBtn.addEventListener('click', function () {
-    modal.close();
-})
+
 form.addEventListener('submit', function (event) {
     event.preventDefault();
     addBookToLibrary();
+    modal.close();
     form.reset();
 });
 
