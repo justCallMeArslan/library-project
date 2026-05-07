@@ -56,6 +56,7 @@ function displayBooks() {
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Remove";
         deleteButton.classList.add("deleteButton");
+        
         deleteButton.addEventListener('click', function () {
             const arrayIndex = personalLibrary.findIndex(arrayBook => arrayBook.id === book.id);
             if (arrayIndex > -1) {
