@@ -56,7 +56,7 @@ function displayBooks() {
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Remove";
         deleteButton.classList.add("deleteButton");
-        
+
         deleteButton.addEventListener('click', function () {
             const arrayIndex = personalLibrary.findIndex(arrayBook => arrayBook.id === book.id);
             if (arrayIndex > -1) {
@@ -91,3 +91,35 @@ form.addEventListener('submit', function (event) {
 });
 
 
+// form validation practice 
+
+
+formTitle.addEventListener("input", () => {
+    if (/^[^a-zA-Z0-9]/.test(formTitle.value)) {
+        formTitle.setCustomValidity("Can only start with latin alphabet!");
+    } else {
+        formTitle.setCustomValidity("");
+    }
+
+    formTitle.reportValidity();
+});
+
+formAuthor.addEventListener("input", () => {
+    if (/^[^a-zA-Z]/.test(formAuthor.value)) {
+        formAuthor.setCustomValidity("Only latin alphabet.");
+    } else {
+        formAuthor.setCustomValidity("");
+    }
+
+    formAuthor.reportValidity();
+})
+
+formNumOfPages.addEventListener ("input", ()=> {
+    if (formNumOfPages.validity.rangeOverflow){
+        formNumOfPages.setCustomValidity("Never seen such a big book.")
+    } else {
+        formNumOfPages.setCustomValidity("");
+    }
+
+    formNumOfPages.reportValidity();
+})
